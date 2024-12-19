@@ -1,38 +1,26 @@
 <?php error_reporting(1);  ?>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>my-assets/css/css.css" />
+<input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
 <script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery.base64.js"></script>
 <script type="text/javascript" src="<?php echo base_url()?>assets/js/html2canvas.js"></script>
 <script type="text/javascript" src="<?php echo base_url()?>assets/js/jspdf.plugin.autotable"></script>
 <script type="text/javascript" src="<?php echo base_url()?>assets/js/jspdf.umd.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<!--<script type="text/javascript" src="<?php echo base_url()?>my-assets/js/profarma.js"></script>-->
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css" />
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/drag_drop_index_table.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>my-assets/js/quotation_tableManager.js"></script>
-<!--<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>-->
-<!--<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />-->
-<!-- <script type="text/javascript" src="<?php echo base_url()?>my-assets/js/tableManager.js"></script> -->
+<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+<script type="text/javascript" src="<?php echo base_url()?>my-assets/js/employeeform_tableManager.js"></script>
 <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
 <script type="text/javascript" src="http://mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script>
 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
-<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-<script src="<?php echo base_url() ?>assets/js/dashboard.js" ></script>
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script src="https://code.highcharts.com/modules/export-data.js"></script>
-<script src="https://code.highcharts.com/modules/accessibility.js"></script>
-<link href="<?php echo base_url() ?>assets/css/style.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>my-assets/css/css.css" />
 <link rel="stylesheet" href="<?php echo base_url() ?>my-assets/css/style.css">
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" src="http://www.bacubacu.com/colresizable/js/colResizable-1.5.min.js"></script>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>my-assets/css/css.css" />
-<script type="text/javascript" src="<?php echo base_url()?>my-assets/js/profarma.js"></script>
-<input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>my-assets/css/css.css" />
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>my-assets/css/css.css" />
+<script type="text/javascript" src="<?php echo base_url()?>assets/js/drag_drop_index_table.js"></script>
 <style>
    .btnclr{
    background-color:<?php echo $setting_detail[0]['button_color']; ?>;
@@ -137,7 +125,7 @@
                      }
                      }
                      if ($_SESSION['u_type'] == 2) { ?>
-                  <!-- <a href="<?php echo base_url('Cinvoice') ?>" class="btnclr btn m-b-5 m-r-2" style="color:white;background-color: #337ab7;border-color: #2e6da4;height: fit-content;"> <?php echo display('Create Sale') ?></a> -->
+                 
                   <a href="<?php echo base_url('Cinvoice/profarma_invoice') ?>" class="btnclr btn btn-default dropdown-toggle boxes filip-horizontal mobile_para"   style="height:fit-content;"  ><i class="far fa-file-alt"> </i>  <?php echo 'Create Estimate'?></a>
                   <?php } ?>
                   &nbsp;&nbsp;
@@ -290,20 +278,14 @@
                         <select id="filterby" style="border-radius:5px;height:25px;">
                            <option value="1"><?php echo display('ID') ?></option>
                            <option value="2"><?php echo display('Invoice No') ?></option>
-                            <option value="4"><?php echo  ('Phone No') ?></option>
-                            
+                           <option value="4"><?php echo  ('Phone No') ?></option>
                            <option value="10"><?php echo  ('Payment Type') ?></option>
-                        
-                           
-                          
                            <option value="13"><?php echo display('Amount Paid') ?></option>
                            <option value="14"><?php echo display('Due Amount') ?></option>
                            <option value="15"><?php echo display('Total Amount') ?></option>
                            <option value="16"><?php echo display('Date') ?></option>
                            <option value="17"><?php echo display('Customer Name') ?></option>
-                           
-                                                      <option value="18"><?php echo  ('Billing Address') ?></option>
-
+                           <option value="18"><?php echo  ('Billing Address') ?></option>
                            <option value="19"><?php echo display('Tax Details') ?></option>
                            <option value="20"><?php echo display('Grand Total') ?></option>
                            <option value="22"><?php echo display('Remarks / Details') ?></option>
@@ -319,33 +301,16 @@
                      <div id="customers">
                         <table class="table table-bordered" cellspacing="0" width="100%" id="ProfarmaInvList">
                            <thead class="sortableTable">
-                             
-                             
-                             
-                             
-                             
-                             
-                             
-                             
-                             
                               <tr  class="sortableTable__header btnclr">
                                  <th class="1 value" data-col="1" data-control-column="1"    style="width: 80px; height: 40.0114px; text-align:center;" ><?php echo display('ID') ?></th>
-                                 
-                                 
-                                 
                                  <th class="2 value" data-col="2" data-control-column="2"  style="height: 45.0114px; width: 284.011px;text-align:center;" ><?php echo display('Invoice No') ?></th>
                                  
-                                  <th class="17 value" data-col="17" data-control-column="17"    style="width: 198.011px;text-align:center;"       ><?php echo ('Customer Name') ?></th>
-                                 <th class="16 value" data-col="16" data-control-column="16"    style="width: 198.011px;text-align:center;"       ><?php echo display('Date') ?></th>
-
+                                  <th class="17 value" data-col="17" data-control-column="17"    style="width: 198.011px;text-align:center;"><?php echo ('Customer Name') ?></th>
+                                 <th class="16 value" data-col="16" data-control-column="16"    style="width: 198.011px;text-align:center;"><?php echo display('Date') ?></th>
                                  
                                  <th class="4 value"  data-col="4" data-control-column="4"  style="width: 248.011px;text-align:center;"><?php echo ('Phone No') ?></th>
-                               
-                                 <th class="10 value" data-col="10" data-control-column="10"    style="width: 198.011px;text-align:center;"       ><?php echo  ('Payment Type') ?></th>
-                               
-                                                                <th class="20 value" data-col="20" data-control-column="20" style="width: 190.011px; height: 44.0114px;text-align:center;"><?php echo display('Grand Total') ?></th>
-
-                               
+                                 <th class="10 value" data-col="10" data-control-column="10"    style="width: 198.011px;text-align:center;"><?php echo  ('Payment Type') ?></th>
+                                 <th class="20 value" data-col="20" data-control-column="20" style="width: 190.011px; height: 44.0114px;text-align:center;"><?php echo display('Grand Total') ?></th>
                                  <th class="13 value" data-col="13" data-control-column="13" style="width: 190.011px; height: 44.0114px;text-align:center;"><?php echo display('Amount Paid') ?></th>
                                  <th class="14 value" data-col="14" data-control-column="14" style="width: 190.011px; height: 44.0114px;text-align:center;"><?php echo display('Due Amount') ?></th>
                                  <th class="18 value" data-col="18 " data-control-column="18"    style="width: 198.011px;text-align:center;"><?php echo  ('Billing Address') ?></th>
@@ -354,18 +319,6 @@
                                  <th class="text-center 23 value"   data-col="23" data-control-column="23"   style="width: 650.011px; height: 49.0114px;text-align:center;" ><?php echo display('Action') ?></th>
                               </tr>
                            </thead>
-                           
-                           
-                           
-                           
-                           
-                           
-                           
-                           
-                           
-                           
-                           
-                           
                            <tbody class="sortableTable__body">
                               <?php
                                  $count=1;
@@ -383,17 +336,13 @@
                                  data-supplier="<?php echo $arr['description_goods']; ?>">
                                  <td data-col="1" class="1" style="text-align:center;"> <?php  echo $count;  ?></td>
                                  <td data-col="2" class="2" style="text-align:center;white-space: nowrap;" ><?php   echo $arr['chalan_no'];  ?></td>
-                                  
-                                 
-                                 
-                                                                  <td data-col="17" class="17"  style="text-align:center;" ><?php   echo $arr['customer_id'] ?></td>
-
-                                                                   <td data-col="16" class="16 ads"  style="text-align:center;" ><?php   echo $arr['purchase_date'];  ?></td>
+                                 <td data-col="17" class="17"  style="text-align:center;" ><?php   echo $arr['customer_id'] ?></td>
+                                 <td data-col="16" class="16 ads"  style="text-align:center;" ><?php   echo $arr['purchase_date'];  ?></td>
 
                                  <td data-col="4" class="4 ads" style="text-align:center;" ><?php   echo $arr['pre_carriage'];  ?></td>
                                
                                  <td data-col="10" class="10"  style="text-align:center;" ><?php   echo $arr['description_goods'];  ?></td>
-                                                               <td data-col="20" class="20"  style="text-align:center;"><?php   echo $currency." ".$arr['gtotal'];  ?></td>
+                                 <td data-col="20" class="20"  style="text-align:center;"><?php   echo $currency." ".$arr['gtotal'];  ?></td>
 
                                  <td data-col="13" class="13"  style="text-align:center;" ><?php   echo $currency." ".$arr['amt_paid'];  ?></td>
                                  <td data-col="14"  class="14"  style="text-align:center;" ><?php   echo $currency." ".$arr['bal_amt'];  ?></td>
@@ -958,22 +907,16 @@
    #numrows{
    width: 75px !important;
    }
-   /* pagecontroller pagecontroller-n */
+   
    .pagecontroller {
    margin: 5px;
    }
-   /* .filip-horizontal:hover{
-   background-color: crimson;
-   transition: all 1s;
-   -webkit-transform: rotateY(-360deg);
-   -ms-transform: rotateY(-360deg);
-   transform: rotateY(-360deg);
-   } */
+   
    .ads{
-   max-width: 0px !important;
-   white-space: nowrap;
-   overflow: hidden;
-   text-overflow: ellipsis;
+   max-width: none !important;
+   white-space: normal; 
+   overflow: visible; 
+   text-overflow: clip;
    }
    .logo-9 i{
    font-size:80px;

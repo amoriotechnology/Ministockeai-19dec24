@@ -1,8 +1,5 @@
-<!-- Product Purchase js -->
-<?php  //error_reporting(1);  ?>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="<?php echo base_url() ?>my-assets/js/countrypicker.js" type="text/javascript"></script>
 <script src="<?php echo base_url() ?>my-assets/js/admin_js/invoice.js" type="text/javascript"></script>
@@ -209,13 +206,7 @@
                         <label for="adress" class="col-sm-4 col-form-label"><?php echo display('customer_name') ?>
                         </label>
                         <div class="col-sm-8">
-                           <!-- <select name="customer_id" id="customer_id" class="form-control"  style="border: 2px solid #d7d4d6;width:100%;" >
-                              <option selected value="<?php echo $customer_id; ?>"><?php echo $customer_name; ?></option>
-                              <?php foreach($customer as $customer){ ?>
-                              <option value="<?=$customer['customer_id']; ?>"><?=$customer['customer_name']; ?></option>
-                              <?php } ?>
-                              </select> -->
-                           <!--     <input type="text" id="currency_type" value="<?php // echo   ?>"/>-->
+                          
                            <input type="text" class="form-control" tabindex="4" id="customer_id" name="customer_id" value="<?php echo $customer_id; ?>"   style="border: 2px solid #d7d4d6;width:100%;"   />
                         </div>
                      </div>
@@ -225,8 +216,7 @@
                         <label for="date" class="col-sm-4 col-form-label"><?php echo display('date') ?>
                         </label>
                         <div class="col-sm-8">
-                           <?php $date = date('Y-m-d'); ?>
-                           <input type="date" required tabindex="2" class="form-control datepicker" name="purchase_date" value="<?php echo $date; ?>" id="date" readonly  style="border: 2px solid #d7d4d6;width:100%;"    > 
+                           <input type="text" required tabindex="2" class="form-control" name="purchase_date" id="my_date_picker" value="<?php echo $purchase_date; ?>" readonly style="border: 2px solid #d7d4d6;width:100%">
                         </div>
                      </div>
                   </div>

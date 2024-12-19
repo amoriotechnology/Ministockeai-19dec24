@@ -1,10 +1,10 @@
-<!-- Product Purchase js -->
-<?php    ?>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<!-- jQuery library -->
 <script src="<?php echo base_url() ?>my-assets/js/countrypicker.js" type="text/javascript"></script>
 <script src="<?php echo base_url() ?>my-assets/js/admin_js/invoice.js" type="text/javascript"></script>
 <script src="<?php echo base_url() ?>my-assets/js/admin_js/product_country.js" type="text/javascript"></script>
+<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/jquery-ui.css">
+<script src="<?php echo base_url() ?>assets/js/jquery.min.js"></script>
+<script src="<?php echo base_url() ?>assets/js/jquery-ui.min.js"></script>
 <style>
    .ui-selectmenu-text{
    display:none;
@@ -239,8 +239,7 @@
                <i class="text-danger">  </i>
                </label>
                <div class="col-sm-8">
-                  <?php $date = date('Y-m-d'); ?>
-                  <input type="date" required tabindex="2" class="form-control datepicker"  name="purchase_date" value="<?php echo $date; ?>" id="date" style="border: 2px solid #d7d4d6;width:100%" > 
+                  <input type="text" required tabindex="2" class="form-control" name="purchase_date" id="my_date_picker" style="border: 2px solid #d7d4d6;width:100%">
                </div>
             </div>
          </div>
@@ -4638,33 +4637,31 @@ Price per Sq.Ft </label>
           });
           event.preventDefault();
       });
+
+$(document).ready(function() {
+    $('#my_date_picker').datepicker({
+        format: 'mm-dd-yyyy', 
+        autoclose: true,
+        todayHighlight: true,
+        minDate: 0 
+    });
+
+    let today = new Date();
+    $('#my_date_picker').datepicker('setDate', today);
+
+    let formattedDate = 
+        ('0' + (today.getMonth() + 1)).slice(-2) + '-' + 
+        ('0' + today.getDate()).slice(-2) + '-' + 
+        today.getFullYear();
+    $('#my_date_picker').val(formattedDate); 
+});
+
 </script>
-            <style>
-                  /* input{
-                  border:none;
-                  }
-                  textarea:focus, input:focus{
-                  outline: none;
-                  }
-                  .text-right {
-                  text-align: left; 
-                  }
-                  .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
-                  padding:5px;
-                  }
-                  table {
-                  width: 100px;
-                  }
-                  th,
-                  td {
-                  word-wrap: break-word
-                  border: 1px solid black;
-                  width: 80px;
-                  } */
-                  .select2 {
-                  display:none;
-                  }
-                  #download_select:focus option:first-of-type , #print_select:focus option:first-of-type{
-                  display: none;
-                  }
-               </style> 
+<style>
+   .select2 {
+   display:none;
+   }
+   #download_select:focus option:first-of-type , #print_select:focus option:first-of-type{
+   display: none;
+   }
+</style> 

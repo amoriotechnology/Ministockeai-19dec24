@@ -2862,6 +2862,7 @@ public function get_product_info($product_nam,$product_model){
     $taxdata['date']        = (!empty($this->input->post('invoice_date',TRUE))?$this->input->post('invoice_date',TRUE):date('Y-m-d'));
     $this->db->insert('tax_collection',$taxdata);
     $payment_id=$this->input->post('payment_id');
+    $payment_type = $_POST['payment_type'];
     
     $datainv = array(
         'sales_by'        => $this->session->userdata('user_id'),
@@ -2872,7 +2873,7 @@ public function get_product_info($product_nam,$product_model){
         'commercial_invoice_number' => $this->input->post('commercial_invoice_number',TRUE),
         'billing_address' => $this->input->post('billing_address',TRUE),          
         'container_no' => $this->input->post('phone_no',TRUE),
-        'payment_type'    =>  $this->input->post('payment_type',TRUE),
+        'payment_type'    =>  $payment_type,
         'bank_id'         =>  $this->input->post('bank',TRUE),
         'gtotal'    => $this->input->post('gtotal',TRUE),
         'total_amount'    => $this->input->post('total',TRUE),
@@ -2900,7 +2901,7 @@ public function get_product_info($product_nam,$product_model){
         'account_category' => $this->input->post('account_category', true),  
         'sub_category' => $this->input->post('sub_category', true),
         'account_subcat' => $this->input->post('account_subcat', true),
-        "created_date" => date('ymd'),
+        "created_date" => date('m-d-Y'),
     );
     $purchase_id_1 = $this->db->where('commercial_invoice_number',$this->input->post('commercial_invoice_number',TRUE));
     $q=$this->db->get('invoice');

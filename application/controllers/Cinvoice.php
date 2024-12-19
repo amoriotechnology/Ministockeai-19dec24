@@ -2699,7 +2699,8 @@ public function manual_sales_insert(){
 
 
 
-public function manage_profarma_invoice() {
+public function manage_profarma_invoice() 
+{
     $this->session->unset_userdata('perfarma_invoice_id');
     $date = $this->input->post("daterangepicker-field");
     $CI = & get_instance();
@@ -2708,53 +2709,45 @@ public function manage_profarma_invoice() {
     $CI->load->library('linvoice');
     $CI->load->model('Invoices');
     $CA->load->model('Web_settings');
-    
-            $setting_detail = $CI->Web_settings->retrieve_setting_editdata();
-
-  $invoice = $CI->Invoices->get_profarma_invoice();
-  $email_setting = $CA->Web_settings->retrieve_email_setting();
-//   print_r($email_setting);
-  $sale = $CI->Invoices->sample($date);
-  $currency_details = $CI->Web_settings->retrieve_setting_editdata();
-     $curn_info_default = $CI->db->select('*')->from('currency_tbl')->where('icon',$currency_details[0]['currency'])->get()->result_array();
-      $profarmasearch = $CI->Invoices->getprofarma_data();
+    $setting_detail = $CI->Web_settings->retrieve_setting_editdata();
+    $invoice = $CI->Invoices->get_profarma_invoice();
+    $email_setting = $CA->Web_settings->retrieve_email_setting();
+    $sale = $CI->Invoices->sample($date);
+    $currency_details = $CI->Web_settings->retrieve_setting_editdata();
+    $curn_info_default = $CI->db->select('*')->from('currency_tbl')->where('icon',$currency_details[0]['currency'])->get()->result_array();
+    $profarmasearch = $CI->Invoices->getprofarma_data();
     $data = array(
-           'curn_info_default' =>$curn_info_default[0]['currency_name'],
+        'curn_info_default' =>$curn_info_default[0]['currency_name'],
         'currency' =>$currency_details[0]['currency'],
         'invoice'         =>  $invoice,
         'email_setting'  => $email_setting,
         'sale' => $sale,
         'profarmasearch' => $profarmasearch,
-                   'setting_detail' => $setting_detail
-
+        'setting_detail' => $setting_detail
     );
     $content = $this->load->view('invoice/profarma_invoice_list', $data, true);
     $this->template->full_admin_html_view($content);
 }
-    public function get_setting() {
-        $CI = & get_instance();
 
-        $this->auth->check_admin_auth();
-        $CI->load->model('Invoices');
-        $menu = $this->input->post('menu');
-      
-     $submenu = $this->input->post('submenu');
-       
-        $user=$this->session->userdata('user_id');
-  
-
-                $invoice = $CI->Invoices->get_setting($user,$menu,$submenu);
-               $menu= $invoice[0]->menu; 
-               $submenu=$invoice[0]->submenu;
-               $set= $invoice[0]->setting;
-$data=array(
-'menu'=> $menu,
-'submenu'=> $submenu,
-'setting' => $set
-);
-echo json_encode($data);
-
-    }
+public function get_setting() 
+{
+    $CI = & get_instance();
+    $this->auth->check_admin_auth();
+    $CI->load->model('Invoices');
+    $menu = $this->input->post('menu');
+    $submenu = $this->input->post('submenu');
+    $user=$this->session->userdata('user_id');
+    $invoice = $CI->Invoices->get_setting($user,$menu,$submenu);
+    $menu= $invoice[0]->menu; 
+    $submenu=$invoice[0]->submenu;
+    $set= $invoice[0]->setting;
+    $data=array(
+    'menu'=> $menu,
+    'submenu'=> $submenu,
+    'setting' => $set
+    );
+    echo json_encode($data);
+}
     public function setting() {
       //  echo "<script>alert(localStorage.getItem('states'))</script>";
         $output = $this->input->post();
@@ -5109,6 +5102,7 @@ public function performer_ins(){
         $purchase_id = date('YmdHis');
         $chalan_no=$this->input->post('chalan_no');
         $postData = $this->input->post();
+        $desc_goods = $_POST['description_goods'];  
         $data = array(
                     'purchase_id' => $purchase_id,
                     'chalan_no'=>$this->input->post('chalan_no'),
@@ -5131,7 +5125,7 @@ public function performer_ins(){
                     'unit'=>$this->input->post('unit'),
                     'discharge'=>$this->input->post('discharge'),
                     'terms_payment'=>$this->input->post('terms_payment'),
-                    'description_goods'=>$this->input->post('description_goods'),
+                    'description_goods' => $desc_goods,
                     'amt_paid'=>$this->input->post('amount_paid'),
                     'bal_amt'=>$this->input->post('balance'),
                     'total'=>$this->input->post('total'),

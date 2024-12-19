@@ -1,6 +1,9 @@
 <script src="<?php echo base_url() ?>my-assets/js/admin_js/invoice.js" type="text/javascript"></script>
 <script src="<?php echo base_url() ?>my-assets/js/countrypicker.js" type="text/javascript"></script>
 <script src="<?php echo base_url() ?>my-assets/js/admin_js/product_country.js" type="text/javascript"></script>
+<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/jquery-ui.css">
+<script src="<?php echo base_url() ?>assets/js/jquery.min.js"></script>
+<script src="<?php echo base_url() ?>assets/js/jquery-ui.min.js"></script>
 <style>
    /* START SELECT3.css */
    .select2-selection__rendered{
@@ -267,15 +270,11 @@
                         <div class="form-group row">
                            <label for="date" class="col-sm-4 col-form-label"><?php echo display('Sales Invoice date') ?> </label>
                            <div class="col-sm-8">
-                             <?php $date = date('Y-m-d'); ?>
-                             <input type="date" required tabindex="2" class="form-control datepicker"  name="invoice_date" value="<?php echo $date; ?>" id="date" style="border: 2px solid #d7d4d6;width:100%" > 
+                             <input type="text" required tabindex="2" class="form-control" name="invoice_date" id="my_date_picker" style="border: 2px solid #d7d4d6;width:100%" >
                            </div>
                         </div>
                      </div>
                   </div>
-
-
-
                   <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
                   <input type="hidden" id="invoice_hdn"/> <input type="hidden" id="invoice_hdn1"/>
                   <input type="hidden"  value="<?php echo $payment_id; ?>"  name="payment_id"/>
@@ -5023,17 +5022,17 @@ var text = $('#invoice_hdn1').val().toString().replace(/%20/g, '').replace('"', 
     $(document).on('change input keyup','.sp_total',function (e) {
    var sum = 0;
    
-   	
-   		$(".sp_total").each(function() {
+      
+         $(".sp_total").each(function() {
    
    
-   			if(!isNaN(this.value) && this.value.length!=0) {
-   				sum += parseFloat(this.value);
-   			}
+            if(!isNaN(this.value) && this.value.length!=0) {
+               sum += parseFloat(this.value);
+            }
    
-   		});
+         });
    
-   		$("#landing_amount").val(sum.toFixed(2));
+         $("#landing_amount").val(sum.toFixed(2));
    });
    $('#transaction').on('change','.l_cost',function() {
        console.log('hi');
@@ -5042,34 +5041,34 @@ var text = $('#invoice_hdn1').val().toString().replace(/%20/g, '').replace('"', 
    
    var sum = 0;
    
-   	
-   		$(".l_cost").each(function() {
+      
+         $(".l_cost").each(function() {
    
    
-   			if(!isNaN(this.value) && this.value.length!=0) {
-   				sum += parseFloat(this.value);
-   			}
+            if(!isNaN(this.value) && this.value.length!=0) {
+               sum += parseFloat(this.value);
+            }
    
-   		});
+         });
    
-   	$(this).closest('table').find(".landingpersqft").val(sum.toFixed(2));
+      $(this).closest('table').find(".landingpersqft").val(sum.toFixed(2));
    
    
    });
     $(document).on('change input keyup','.sp_total',function (e) {
    var sum = 0;
    
-   	
-   		$(".sp_total").each(function() {
+      
+         $(".sp_total").each(function() {
    
    
-   			if(!isNaN(this.value) && this.value.length!=0) {
-   				sum += parseFloat(this.value);
-   			}
+            if(!isNaN(this.value) && this.value.length!=0) {
+               sum += parseFloat(this.value);
+            }
    
-   		});
+         });
    
-   		$("#landing_amount").val(sum.toFixed(2));
+         $("#landing_amount").val(sum.toFixed(2));
    });
     $(document).on('keyup', '.sp_qty,.sp_rate', function (e) {
       ;
@@ -5080,17 +5079,17 @@ var text = $('#invoice_hdn1').val().toString().replace(/%20/g, '').replace('"', 
    
    var sum = 0;
    
-   	
-   		$(".sp_total").each(function() {
+      
+         $(".sp_total").each(function() {
    
    
-   			if(!isNaN(this.value) && this.value.length!=0) {
-   				sum += parseFloat(this.value);
-   			}
+            if(!isNaN(this.value) && this.value.length!=0) {
+               sum += parseFloat(this.value);
+            }
    
-   		});
+         });
    
-   	$(this).closest('table').find("#landing_amount").val(sum.toFixed(2));
+      $(this).closest('table').find("#landing_amount").val(sum.toFixed(2));
    
    
      });
@@ -5134,12 +5133,23 @@ var text = $('#invoice_hdn1').val().toString().replace(/%20/g, '').replace('"', 
        });
    });
    
-   
-   //   $("#myBtn2").click(function(){
-   //     //   alert('hi');
-   //     // $("#payment_type").modal({backdrop: false});
-   //     $('#payment_type').modal('show');
-   // });
+$(document).ready(function() {
+    $('#my_date_picker').datepicker({
+        format: 'mm-dd-yyyy', 
+        autoclose: true,
+        todayHighlight: true,
+        minDate: 0 
+    });
+
+    let today = new Date();
+    $('#my_date_picker').datepicker('setDate', today);
+
+    let formattedDate = 
+        ('0' + (today.getMonth() + 1)).slice(-2) + '-' + 
+        ('0' + today.getDate()).slice(-2) + '-' + 
+        today.getFullYear();
+    $('#my_date_picker').val(formattedDate); 
+});
    
 </script>
 <style>
